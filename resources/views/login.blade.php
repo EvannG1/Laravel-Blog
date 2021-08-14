@@ -22,11 +22,11 @@
         <form action="{{ route('auth.login') }}" method="POST">
             @csrf
             <div class="form-floating">
-                <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email address">
+                <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email address" required>
                 <label for="floatingEmail">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
             </div>
 
