@@ -15,3 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\PostController@index')->name('home');
 Route::get('/article/{id}', 'App\Http\Controllers\PostController@article')->name('article');
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('login');
+
+Route::group(['prefix' => 'auth'], function() {
+    Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('auth.login');
+    Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('auth.logout');
+});
