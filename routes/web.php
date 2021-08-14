@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\PostController@index')->name('home');
+Route::get('/article/{id}', 'App\Http\Controllers\PostController@article')->name('article');
