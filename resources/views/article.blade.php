@@ -10,7 +10,11 @@
     <hr>
     <div class="row">
         <div class="col-lg-6">
-            <img src="{{ $post->image }}" alt="{{ $post->title }}">
+            @if (str_contains($post->image, 'http'))
+                <img src="{{ $post->image }}" alt="{{ $post->title }}" width="500">
+            @else
+                <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" width="500">
+            @endif
         </div>
         <div class="col-lg-6 d-flex align-items-center" style="font-size:24px;">
             <p>{{ $post->content }}</p>

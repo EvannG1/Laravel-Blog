@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::limit(6)->get();
+        $posts = Post::limit(6)->orderBy('id', 'DESC')->get();
 
         return view('home', [
             'posts' => $posts

@@ -14,7 +14,13 @@
             @foreach ($posts as $post)
                 <div class="col-lg-4 col-md-6 pb-3">
                     <div class="card h-100">
-                        <a href="{{ route('article', $post->id) }}"><img src="{{ $post->image }}" class="card-img-top" alt="{{ $post->title }}"></a>
+                        <a href="{{ route('article', $post->id) }}">
+                            @if (str_contains($post->image, 'http'))
+                                <img src="{{ $post->image }}" class="card-img-top" alt="{{ $post->title }}" width="100%">
+                            @else
+                                <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" width="100%">
+                            @endif
+                        </a>
                         <div class="card-body">
                             <a href="{{ route('article', $post->id) }}"><h5 class="card-title">{{ $post->title }}</h5></a>
                             <p class="card-text">{{ substr($post->content, 0, 200) }}...</p>

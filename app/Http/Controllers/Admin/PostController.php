@@ -16,22 +16,28 @@ class PostController extends Controller
 
     public function createArticle(Request $request)
     {
-        $article = $request->validate([
+        $request->validate([
             'title' => 'required|max:50',
-            'image' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'image' => 'required|mimes:jpeg,png,bmp,tiff'
         ]);
 
-        $post = new Post;
+        $filename = time() . '.' . $request->image->extension();
 
-        $post->title = $article['title'];
-        $post->image = $article['image'];
-        $post->content = $article['content'];
-        $post->user_id = Auth::user()->id;
+        $image_path = $request->file('image')->storeAs(
+            'images',
+            $filename,
+            'public'
+        );
 
-        if($post->save()) {
-            return redirect()->route('admin.edit_article', $post->id)->with('success', 'The article has been created.');
-        }
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $image_path,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect()->route('admin.edit_article', $post->id)->with('success', 'The article has been created.');
     }
 
     public function editArticlePage(int $id)
@@ -45,7 +51,7 @@ class PostController extends Controller
 
     public function editArticle(Request $request)
     {
-        $article = $request->validate([
+        $request->validate([
             'title' => 'required|max:50',
             'image' => 'required',
             'content' => 'required'
@@ -53,13 +59,12 @@ class PostController extends Controller
 
         $article_id = $request->route('id');
 
-        $post = Post::find($article_id);
-        $post->title = $article['title'];
-        $post->image = $article['image'];
-        $post->content = $article['content'];
+        Post::findOrFail($article_id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $request->image
+        ]);
 
-        if($post->save()) {
-            return redirect()->back()->with('success', 'The article has been saved.');
-        }
+        return redirect()->back()->with('success', 'The article has been saved.');
     }
 }
