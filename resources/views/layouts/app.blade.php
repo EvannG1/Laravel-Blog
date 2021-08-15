@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mon blog</title>
+    <title>Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -36,7 +36,7 @@
                         <a class="btn btn-primary" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Sign in</a>
                         <a class="btn btn-secondary" href="#"><i class="fas fa-user-plus"></i> Register</a>
                     @else
-                        <a class="btn btn-primary" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a class="btn btn-primary" href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                         <a class="btn btn-secondary" href="{{ route('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Sign out</a>
                     @endif
                 </div>
