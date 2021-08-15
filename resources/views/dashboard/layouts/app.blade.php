@@ -57,7 +57,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="#">List of articles</a>
-                                <a class="nav-link" href="#">New article</a>
+                                <a class="nav-link" href="{{ route('admin.new_article') }}">New article</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -93,7 +93,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    @yield('content').
+                    @yield('content')
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

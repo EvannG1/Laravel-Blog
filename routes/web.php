@@ -26,4 +26,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('dashboard/home');
     })->name('admin.dashboard');
+
+    Route::get('/articles/new', 'App\Http\Controllers\Admin\PostController@newArticlePage')->name('admin.new_article');
+    Route::post('/articles/new', 'App\Http\Controllers\Admin\PostController@createArticle');
+
+    Route::get('/article/edit/{id}', 'App\Http\Controllers\Admin\PostController@editArticlePage')->name('admin.edit_article');
+    Route::post('/article/edit/{id}', 'App\Http\Controllers\Admin\PostController@editArticle');
 });

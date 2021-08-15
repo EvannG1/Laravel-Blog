@@ -15,4 +15,13 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function article(int $id)
+    {
+        $post = Post::where('id', $id)->with('user')->firstOrFail();
+
+        return view('article', [
+            'post' => $post
+        ]);
+    }
 }
